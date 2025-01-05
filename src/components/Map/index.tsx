@@ -18,7 +18,7 @@ const convergenceInfo = {
 export default function Map({ locations }) {
   return (
     <GoogleMap
-      mapId={process.env.GOOGLE_MAP_ID}
+      mapId={process.env.NEXT_PUBLIC_GOOGLE_MAP_ID}
       style={{ width: '100vw', height: '100vh' }}
       defaultCenter={{ lat: convergenceInfo.lat, lng: convergenceInfo.lng }}
       defaultZoom={10}
