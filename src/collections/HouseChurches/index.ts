@@ -3,6 +3,8 @@ import { CollectionConfig } from 'payload'
 import { anyone } from '@/access/anyone'
 import { authenticated } from '@/access/authenticated'
 
+import { revalidateDelete, revalidateMap } from './hooks/revalidateMap'
+
 export const HouseChurches: CollectionConfig = {
   slug: 'house-churches',
   labels: {
@@ -88,7 +90,12 @@ export const HouseChurches: CollectionConfig = {
       label: 'Longitude',
       type: 'number',
       required: true,
+
       defaultValue: -97.45800992201534,
     },
   ],
+  hooks: {
+    afterChange: [revalidateMap],
+    afterDelete: [revalidateDelete],
+  },
 }
