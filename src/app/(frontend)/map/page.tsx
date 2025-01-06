@@ -1,7 +1,11 @@
+import { Fragment } from 'react'
+
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
 import Map from '@/components/Map'
+
+import PageClient from './page.client'
 
 export default async function Page() {
   const payload = await getPayload({ config: configPromise })
@@ -22,5 +26,10 @@ export default async function Page() {
 
   const locations = houseChurches.docs
 
-  return <Map locations={locations} />
+  return (
+    <Fragment>
+      <PageClient />
+      <Map locations={locations} />
+    </Fragment>
+  )
 }

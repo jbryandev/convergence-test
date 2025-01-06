@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 
 import type {
   CollectionAfterChangeHook,
@@ -7,22 +7,22 @@ import type {
 
 export const revalidateMap: CollectionAfterChangeHook = ({
   doc,
-  req: { context },
+  req: { context, payload },
 }) => {
   if (!context.disableRevalidate) {
+    payload.logger.info(`Revalidating map`)
     revalidatePath('/map')
-    revalidateTag('pages-sitemap')
   }
   return doc
 }
 
 export const revalidateDelete: CollectionAfterDeleteHook = ({
   doc,
-  req: { context },
+  req: { context, payload },
 }) => {
   if (!context.disableRevalidate) {
+    payload.logger.info(`Revalidating map`)
     revalidatePath('/map')
-    revalidateTag('pages-sitemap')
   }
 
   return doc
